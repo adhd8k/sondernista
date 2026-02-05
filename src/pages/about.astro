@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="About — Sondernista">
+  <div class="pt-24">
+    <section class="py-16 md:py-24">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 md:gap-24">
+          <!-- Portrait -->
+          <div class="border border-border">
+            <img 
+              src="/images/portrait.jpg" 
+              alt="Portrait"
+              class="w-full grayscale"
+            />
+          </div>
+
+          <!-- Bio -->
+          <div class="flex flex-col justify-center">
+            <h1 class="text-2xl uppercase tracking-widest font-bold text-primary">
+              About
+            </h1>
+            
+            <div class="mt-8 space-y-6 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                Sondernista is a fine art photographer exploring the intersection 
+                of light, form, and quiet contemplation. Based between coasts, 
+                the work draws from abandoned spaces, natural landscapes, and 
+                the subtle poetry of everyday objects.
+              </p>
+              <p>
+                The name derives from "sonder" — the realization that each 
+                passerby has a life as vivid and complex as your own. This 
+                awareness informs every image: a commitment to seeing deeply, 
+                to honoring the overlooked, to finding the extraordinary 
+                within the mundane.
+              </p>
+              <p>
+                Selected exhibitions include The Light Room (NYC), Format 
+                Festival (UK), and PhotoVille Brooklyn. Work has been featured 
+                in Aperture, FOAM Magazine, and The New York Times Magazine.
+              </p>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-border">
+              <h2 class="text-xs uppercase tracking-widest font-bold text-primary mb-4">
+                Represented By
+              </h2>
+              <p class="text-xs text-secondary uppercase tracking-widest">
+                Gallery Name — New York
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

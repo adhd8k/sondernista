@@ -1,0 +1,37 @@
+---
+interface Props {
+  slug: string
+  image: string
+  title: string
+  year: string
+  description: string
+}
+
+const { slug, image, title, year, description } = Astro.props
+---
+
+<article class="group">
+  <a href={`/work/${slug}`} class="block">
+    <div class="aspect-[3/2] overflow-hidden border border-border">
+      <img 
+        src={image} 
+        alt={title}
+        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+        loading="lazy"
+      />
+    </div>
+    <div class="mt-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+      <div class="flex-1">
+        <h2 class="text-sm uppercase tracking-widest font-bold text-primary">
+          {title}
+        </h2>
+        <p class="mt-2 text-xs text-secondary uppercase tracking-wide">
+          {year}
+        </p>
+      </div>
+      <p class="md:max-w-md text-xs text-muted-foreground leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </a>
+</article>

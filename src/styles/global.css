@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+
+/* Dark Brutalist Theme */
+:root {
+  --background: #0a0a0a;
+  --foreground: #e5e5e5;
+  --primary: #e5e5e5;
+  --primary-foreground: #0a0a0a;
+  --secondary: #737373;
+  --muted: #1a1a1a;
+  --muted-foreground: #737373;
+  --border: #262626;
+  --radius: 0;
+}
+
+@theme {
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Utility classes */
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-muted { color: var(--muted-foreground); }
+.bg-background { background-color: var(--background); }
+.bg-muted { background-color: var(--muted); }
+.border-border { border-color: var(--border); }

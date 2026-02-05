@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import ProjectCard from '../../components/ProjectCard.astro'
+import { projects } from '../../data/projects'
+---
+
+<Layout title="Work — Sondernista">
+  <div class="pt-24">
+    <section class="py-16 md:py-24">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <div class="flex flex-col gap-20 md:gap-28">
+          {projects.map((project) => (
+            <ProjectCard
+              slug={project.slug}
+              image={project.image}
+              title={project.title}
+              year={project.year}
+              description={project.description}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
