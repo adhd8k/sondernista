@@ -3,27 +3,31 @@ import Layout from '../layouts/Layout.astro'
 
 const assignments = [
   {
-    client: "The New York Times",
-    image: "/images/assignment-nytimes.jpg",
+    client: "OSC",
+    fullName: "Ontario Suspension Collective",
+    image: "/images/assignment-osc.jpg",
+    type: "Documentation",
+    status: "coming soon"
+  },
+  {
+    client: "BME",
+    fullName: "Body Modification Ezine",
+    image: "/images/assignment-bme.jpg",
     type: "Editorial",
     status: "coming soon"
   },
   {
-    client: "Vogue",
-    image: "/images/assignment-vogue.jpg",
-    type: "Fashion",
+    client: "PATINA",
+    fullName: "Patina",
+    image: "/images/assignment-patina.jpg",
+    type: "Aesthetic",
     status: "coming soon"
   },
   {
-    client: "Acne Studios",
-    image: "/images/assignment-acne.jpg",
-    type: "Campaign",
-    status: "coming soon"
-  },
-  {
-    client: "Leica",
-    image: "/images/assignment-leica.jpg",
-    type: "Brand",
+    client: "IR",
+    fullName: "Infrared",
+    image: "/images/assignment-ir.jpg",
+    type: "Exploration",
     status: "coming soon"
   },
 ]
@@ -47,7 +51,7 @@ const assignments = [
               <div class="aspect-[4/3]">
                 <img 
                   src={assignment.image} 
-                  alt={assignment.client}
+                  alt={assignment.fullName}
                   class="w-full h-full object-cover grayscale brightness-50"
                   loading="lazy"
                 />
@@ -56,9 +60,12 @@ const assignments = [
                 <p class="text-base uppercase tracking-[0.15em] text-secondary mb-3">
                   {assignment.type}
                 </p>
-                <h2 class="text-2xl uppercase tracking-[0.15em] font-semibold text-primary">
+                <h2 class="text-3xl uppercase tracking-[0.15em] font-semibold text-primary">
                   {assignment.client}
                 </h2>
+                <p class="mt-2 text-base text-muted-foreground">
+                  {assignment.fullName}
+                </p>
                 <p class="mt-6 text-base uppercase tracking-[0.15em] text-muted-foreground">
                   {assignment.status}
                 </p>
