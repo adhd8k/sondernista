@@ -30,18 +30,18 @@ const assignments = [
 ---
 
 <Layout title="Assignments — Sondernista">
-  <div class="pt-24">
+  <div class="pt-28">
     <section class="py-16 md:py-24">
-      <div class="max-w-[1200px] mx-auto px-6">
-        <h1 class="text-2xl uppercase tracking-widest font-bold text-primary mb-4">
+      <div class="max-w-[1400px] mx-auto px-8">
+        <h1 class="text-4xl md:text-5xl uppercase tracking-[0.15em] font-semibold text-primary mb-6">
           Assignments
         </h1>
-        <p class="text-sm text-muted-foreground max-w-xl mb-16">
+        <p class="text-lg text-muted-foreground max-w-2xl mb-20">
           Commercial and editorial work for select clients. 
           For booking inquiries, please visit the contact page.
         </p>
 
-        <div class="grid md:grid-cols-2 gap-8">
+        <div class="grid md:grid-cols-2 gap-10">
           {assignments.map((assignment) => (
             <div class="group relative border border-border overflow-hidden">
               <div class="aspect-[4/3]">
@@ -52,14 +52,14 @@ const assignments = [
                   loading="lazy"
                 />
               </div>
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                <p class="text-xs uppercase tracking-widest text-secondary mb-2">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                <p class="text-base uppercase tracking-[0.15em] text-secondary mb-3">
                   {assignment.type}
                 </p>
-                <h2 class="text-lg uppercase tracking-widest font-bold text-primary">
+                <h2 class="text-2xl uppercase tracking-[0.15em] font-semibold text-primary">
                   {assignment.client}
                 </h2>
-                <p class="mt-4 text-xs uppercase tracking-widest text-muted-foreground">
+                <p class="mt-6 text-base uppercase tracking-[0.15em] text-muted-foreground">
                   {assignment.status}
                 </p>
               </div>

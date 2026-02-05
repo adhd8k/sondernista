@@ -14,7 +14,7 @@
 }
 
 @theme {
-  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-sans: 'Zalando Sans Expanded', 'Arial', sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -32,9 +32,10 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-mono);
-  font-size: 18px;
-  line-height: 1.6;
+  font-family: 'Zalando Sans Expanded', 'Arial', sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 /* Utility classes */
@@ -44,3 +45,15 @@ body {
 .bg-background { background-color: var(--background); }
 .bg-muted { background-color: var(--muted); }
 .border-border { border-color: var(--border); }
+
+/* Typography scale - GO BIG */
+h1 { font-size: 3rem; font-weight: 600; }
+h2 { font-size: 2rem; font-weight: 600; }
+h3 { font-size: 1.5rem; font-weight: 500; }
+
+@media (min-width: 768px) {
+  body { font-size: 22px; }
+  h1 { font-size: 4rem; }
+  h2 { font-size: 2.5rem; }
+  h3 { font-size: 1.75rem; }
+}

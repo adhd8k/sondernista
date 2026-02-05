@@ -10,18 +10,18 @@ const navLinks = [
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
-  <div class="max-w-[1200px] mx-auto px-6 py-6 flex items-center justify-between">
-    <a href="/" class="text-primary text-sm font-bold uppercase tracking-widest">
+  <div class="max-w-[1400px] mx-auto px-8 py-8 flex items-center justify-between">
+    <a href="/" class="text-primary text-lg font-semibold uppercase tracking-[0.2em]">
       Sondernista
     </a>
-    <nav class="flex gap-8">
+    <nav class="flex gap-10">
       {navLinks.map((link) => (
         <a
           href={link.href}
           class:list={[
-            'text-xs uppercase tracking-widest transition-opacity hover:opacity-60',
+            'text-base uppercase tracking-[0.15em] transition-opacity hover:opacity-60',
             pathname === link.href || pathname.startsWith(link.href + '/') 
-              ? 'text-primary' 
+              ? 'text-primary font-medium' 
               : 'text-secondary'
           ]}
         >

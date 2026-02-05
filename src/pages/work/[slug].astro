@@ -14,30 +14,30 @@ const { project } = Astro.props
 ---
 
 <Layout title={`${project.title} — Sondernista`}>
-  <div class="pt-24">
+  <div class="pt-28">
     <section class="py-16 md:py-24">
-      <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-[1400px] mx-auto px-8">
         <!-- Header -->
-        <div class="mb-16">
+        <div class="mb-20">
           <a 
             href="/work" 
-            class="text-xs uppercase tracking-widest text-secondary hover:text-primary transition-colors"
+            class="text-base uppercase tracking-[0.15em] text-secondary hover:text-primary transition-colors"
           >
             ← Back to Work
           </a>
-          <h1 class="mt-8 text-2xl uppercase tracking-widest font-bold text-primary">
+          <h1 class="mt-10 text-4xl md:text-5xl uppercase tracking-[0.15em] font-semibold text-primary">
             {project.title}
           </h1>
-          <p class="mt-2 text-xs uppercase tracking-widest text-secondary">
+          <p class="mt-4 text-lg uppercase tracking-[0.15em] text-secondary">
             {project.year}
           </p>
-          <p class="mt-8 max-w-2xl text-sm text-muted-foreground leading-relaxed">
+          <p class="mt-10 max-w-3xl text-lg text-muted-foreground leading-relaxed">
             {project.longDescription}
           </p>
         </div>
 
         <!-- Gallery -->
-        <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-12">
           {project.gallery.map((image: string, index: number) => (
             <div class="border border-border">
               <img 
@@ -51,10 +51,10 @@ const { project } = Astro.props
         </div>
 
         <!-- Navigation -->
-        <div class="mt-24 pt-8 border-t border-border flex justify-between">
+        <div class="mt-28 pt-10 border-t border-border flex justify-between">
           <a 
             href="/work" 
-            class="text-xs uppercase tracking-widest text-secondary hover:text-primary transition-colors"
+            class="text-base uppercase tracking-[0.15em] text-secondary hover:text-primary transition-colors"
           >
             ← All Projects
           </a>

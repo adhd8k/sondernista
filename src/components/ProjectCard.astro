@@ -20,16 +20,16 @@ const { slug, image, title, year, description } = Astro.props
         loading="lazy"
       />
     </div>
-    <div class="mt-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+    <div class="mt-8 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
       <div class="flex-1">
-        <h2 class="text-sm uppercase tracking-widest font-bold text-primary">
+        <h2 class="text-xl uppercase tracking-[0.15em] font-semibold text-primary">
           {title}
         </h2>
-        <p class="mt-2 text-xs text-secondary uppercase tracking-wide">
+        <p class="mt-2 text-base text-secondary uppercase tracking-[0.1em]">
           {year}
         </p>
       </div>
-      <p class="md:max-w-md text-xs text-muted-foreground leading-relaxed">
+      <p class="md:max-w-lg text-base text-muted-foreground leading-relaxed">
         {description}
       </p>
     </div>
