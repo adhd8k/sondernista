@@ -4,28 +4,28 @@ import Layout from '../layouts/Layout.astro'
 const assignments = [
   {
     client: "OSC",
-    fullName: "Ontario Suspension Collective",
+    subtitle: "Ontario Suspension Collective",
     image: "/images/assignment-osc.jpg",
     type: "Documentation",
     status: "coming soon"
   },
   {
     client: "BME",
-    fullName: "Body Modification Ezine",
+    subtitle: "Body Modification Ezine",
     image: "/images/assignment-bme.jpg",
     type: "Editorial",
     status: "coming soon"
   },
   {
     client: "PATINA",
-    fullName: "Patina",
+    subtitle: "Texture & Time",
     image: "/images/assignment-patina.jpg",
     type: "Aesthetic",
     status: "coming soon"
   },
   {
     client: "IR",
-    fullName: "Infrared",
+    subtitle: "Infrared Studies",
     image: "/images/assignment-ir.jpg",
     type: "Exploration",
     status: "coming soon"
@@ -51,21 +51,23 @@ const assignments = [
               <div class="aspect-[4/3]">
                 <img 
                   src={assignment.image} 
-                  alt={assignment.fullName}
+                  alt={assignment.client}
                   class="w-full h-full object-cover grayscale brightness-50"
                   loading="lazy"
                 />
               </div>
               <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                <p class="text-base uppercase tracking-[0.15em] text-secondary mb-3">
+                <p class="text-base uppercase tracking-[0.15em] text-secondary mb-4">
                   {assignment.type}
                 </p>
-                <h2 class="text-3xl uppercase tracking-[0.15em] font-semibold text-primary">
-                  {assignment.client}
-                </h2>
-                <p class="mt-2 text-base text-muted-foreground">
-                  {assignment.fullName}
-                </p>
+                <div class="bg-background/90 px-6 py-4">
+                  <h2 class="text-3xl uppercase tracking-[0.15em] font-semibold text-primary">
+                    {assignment.client}
+                  </h2>
+                  <p class="mt-2 text-base text-primary/80">
+                    {assignment.subtitle}
+                  </p>
+                </div>
                 <p class="mt-6 text-base uppercase tracking-[0.15em] text-muted-foreground">
                   {assignment.status}
                 </p>
