@@ -91,8 +91,18 @@ async function prepareWatermark(
   const h = resizedMeta.height!
 
   // Extract the alpha channel as a mask of where strokes are
-  const alphaBuf = await sharp(resizedBuf)
+  let alphaBuf = await sharp(resizedBuf)
     .extractChannel(3)
+    .toBuffer()
+
+  // Thicken the strokes themselves (2 dilation passes on the fill)
+  for (let i = 0; i < 2; i++) {
+    alphaBuf = await sharp(alphaBuf, { raw: { width: w, height: h, channels: 1 } })
+      .median(3)
+      .toBuffer()
+  }
+  alphaBuf = await sharp(alphaBuf, { raw: { width: w, height: h, channels: 1 } })
+    .threshold(20)
     .toBuffer()
 
   // Create a dilated (expanded) version for the border/outline
