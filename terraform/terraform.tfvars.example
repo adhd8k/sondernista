@@ -1,4 +1,15 @@
 # Copy to terraform.tfvars and fill in your values
+
+# ─── GCP ─────────────────────────────────────────────────────
 project_id = "your-gcp-project-id"
 region     = "us-east1"
-domain     = "sondernista.com"  # also used as GCS bucket name
+domain     = "sondernista.com" # also used as GCS bucket name
+
+# ─── Cloudflare ──────────────────────────────────────────────
+cloudflare_api_token  = "your-cloudflare-api-token"
+cloudflare_account_id = "your-cloudflare-account-id"
+
+# ─── Protected Galleries (optional) ──────────────────────────
+# protected_paths       = ["/assignments/bme/*", "/work/private/*"]
+# access_allowed_emails = ["you@example.com", "client@example.com"]
+# access_session_duration = "24h"

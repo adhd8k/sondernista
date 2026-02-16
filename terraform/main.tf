@@ -6,6 +6,10 @@ terraform {
       source  = "hashicorp/google"
       version = "~> 5.0"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 5.0"
+    }
   }
 
   # Uncomment and configure for remote state:
