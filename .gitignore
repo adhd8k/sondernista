@@ -27,4 +27,6 @@ pnpm-debug.log*
 dist/
 
 .next
-src/assets
+
+# Photography originals (large files, not stored on GitHub)
+src/assets/images/

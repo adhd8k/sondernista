@@ -1,104 +1,111 @@
+import type { ImageMetadata } from 'astro'
+
 export interface Project {
   slug: string
-  image: string
+  image: ImageMetadata
   title: string
   year: string
   description: string
   longDescription: string
-  gallery: string[]
+  gallery: ImageMetadata[]
+}
+
+// Helper to load all images from assets
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/**/*.{jpg,jpeg,png,webp,avif,tiff}',
+  { eager: true }
+)
+
+/**
+ * Get an image by its path relative to src/assets/images/
+ * e.g. img('osc/hero.jpg') loads src/assets/images/osc/hero.jpg
+ */
+function img(path: string): ImageMetadata {
+  const key = `../assets/images/${path}`
+  const image = images[key]
+  if (!image) {
+    throw new Error(
+      `Image not found: ${path}\nLooked for: ${key}\nAvailable: ${Object.keys(images).join(', ')}`
+    )
+  }
+  return image.default
+}
+
+/**
+ * Get all images from a subdirectory, sorted alphabetically.
+ * e.g. galleryFrom('osc') loads all images in src/assets/images/osc/
+ */
+function galleryFrom(dir: string): ImageMetadata[] {
+  const prefix = `../assets/images/${dir}/`
+  return Object.entries(images)
+    .filter(([key]) => key.startsWith(prefix))
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, mod]) => mod.default)
 }
 
 export const projects: Project[] = [
   {
     slug: "lines-vienna",
-    image: "/images/project-1.jpg",
+    image: img('lines-vienna/cover.jpg'),
     title: "Lines (Vienna)",
     year: "2024",
     description: "An exploration of abandoned industrial architecture and the poetry found in decay. Light transforms emptiness into something sacred.",
     longDescription: "This ongoing series documents the quiet beauty of abandoned industrial spaces across the American Midwest. Each location tells a story of human ambition, labor, and eventual departure. Through careful observation of light and shadow, these photographs seek to honor the dignity of forgotten places.",
-    gallery: [
-      "/images/project-1.jpg",
-      "/images/project-1-2.jpg",
-      "/images/project-1-3.jpg",
-    ],
+    gallery: galleryFrom('lines-vienna'),
   },
   {
     slug: "hollow-spaces",
-    image: "/images/project-1.jpg",
+    image: img('hollow-spaces/cover.jpg'),
     title: "Hollow Spaces",
     year: "2025",
     description: "An exploration of abandoned industrial architecture and the poetry found in decay. Light transforms emptiness into something sacred.",
     longDescription: "This ongoing series documents the quiet beauty of abandoned industrial spaces across the American Midwest. Each location tells a story of human ambition, labor, and eventual departure. Through careful observation of light and shadow, these photographs seek to honor the dignity of forgotten places.",
-    gallery: [
-      "/images/project-1.jpg",
-      "/images/project-1-2.jpg",
-      "/images/project-1-3.jpg",
-    ],
+    gallery: galleryFrom('hollow-spaces'),
   },
   {
     slug: "solitude",
-    image: "/images/project-2.jpg",
+    image: img('solitude/cover.jpg'),
     title: "Solitude",
     year: "2024",
     description: "Landscapes that speak to isolation and quiet contemplation. Finding beauty in the space between presence and absence.",
     longDescription: "Solitude is a meditation on the emotional landscape of isolation. Shot over the course of a year in remote locations, these images explore the profound stillness found in nature when human presence recedes. The work invites viewers to sit with silence.",
-    gallery: [
-      "/images/project-2.jpg",
-      "/images/project-2-2.jpg",
-      "/images/project-2-3.jpg",
-    ],
+    gallery: galleryFrom('solitude'),
   },
   {
     slug: "concrete-dreams",
-    image: "/images/project-3.jpg",
+    image: img('concrete-dreams/cover.jpg'),
     title: "Concrete Dreams",
     year: "2024",
     description: "Brutalist architecture through the lens of shadow and form. Geometric meditations on urban structures.",
     longDescription: "Concrete Dreams examines the bold geometries of brutalist architecture. These monolithic structures, often maligned, reveal an unexpected poetry when observed through the interplay of light and shadow. The series celebrates the uncompromising vision of mid-century architects.",
-    gallery: [
-      "/images/project-3.jpg",
-      "/images/project-3-2.jpg",
-      "/images/project-3-3.jpg",
-    ],
+    gallery: galleryFrom('concrete-dreams'),
   },
   {
     slug: "tidal",
-    image: "/images/project-4.jpg",
+    image: img('tidal/cover.jpg'),
     title: "Tidal",
     year: "2023",
     description: "Long exposure seascapes capturing the eternal conversation between water and stone. Time made visible.",
     longDescription: "Tidal captures the endless dialogue between ocean and shore. Using extended exposures, the turbulent motion of water transforms into silk, revealing the patience of stone. These images speak to permanence and change, the eternal rhythm of the natural world.",
-    gallery: [
-      "/images/project-4.jpg",
-      "/images/project-4-2.jpg",
-      "/images/project-4-3.jpg",
-    ],
+    gallery: galleryFrom('tidal'),
   },
   {
     slug: "obscured",
-    image: "/images/project-5.jpg",
+    image: img('obscured/cover.jpg'),
     title: "Obscured",
     year: "2023",
     description: "Figure studies through frosted glass and translucent barriers. The human form abstracted and reimagined.",
     longDescription: "Obscured explores the tension between visibility and concealment. Through frosted glass and translucent barriers, the human form becomes abstracted, inviting viewers to project their own narratives onto ambiguous shapes. The work questions how we see and are seen.",
-    gallery: [
-      "/images/project-5.jpg",
-      "/images/project-5-2.jpg",
-      "/images/project-5-3.jpg",
-    ],
+    gallery: galleryFrom('obscured'),
   },
   {
     slug: "objects-in-repose",
-    image: "/images/project-6.jpg",
+    image: img('objects-in-repose/cover.jpg'),
     title: "Objects in Repose",
     year: "2022",
     description: "Still life compositions exploring the dramatic interplay of light and shadow on everyday forms.",
     longDescription: "Objects in Repose returns to the classical tradition of still life, finding drama in the ordinary. Simple objects—vessels, spheres, geometric forms—become stages for the theater of light. The series is an exercise in seeing the extraordinary within the mundane.",
-    gallery: [
-      "/images/project-6.jpg",
-      "/images/project-6-2.jpg",
-      "/images/project-6-3.jpg",
-    ],
+    gallery: galleryFrom('objects-in-repose'),
   },
 ]
 
