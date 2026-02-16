@@ -132,35 +132,32 @@ async function prepareWatermark(
     .raw()
     .toBuffer()
 
+  // Helper: convert a greyscale mask (raw 1-channel) to RGBA where
+  // the mask values become the alpha channel with a solid color fill.
+  async function maskToRGBA(
+    mask: Buffer,
+    color: { r: number; g: number; b: number }
+  ): Promise<Buffer> {
+    // Build RGBA buffer: every pixel gets the fill color + mask value as alpha
+    const rgba = Buffer.alloc(w * h * 4)
+    for (let i = 0; i < w * h; i++) {
+      rgba[i * 4] = color.r
+      rgba[i * 4 + 1] = color.g
+      rgba[i * 4 + 2] = color.b
+      rgba[i * 4 + 3] = mask[i]
+    }
+    return sharp(rgba, { raw: { width: w, height: h, channels: 4 } })
+      .png()
+      .toBuffer()
+  }
+
   // Create border layer: borderColor where dilated mask is, transparent elsewhere
   const { r: br, g: bg, b: bb } = config.borderColor
-  const dilatedPng = await sharp(dilated, { raw: { width: w, height: h, channels: 1 } })
-    .png()
-    .toBuffer()
-  const borderLayer = await sharp({
-    create: { width: w, height: h, channels: 4, background: { r: br, g: bg, b: bb, alpha: 1 } }
-  })
-    .composite([{
-      input: dilatedPng,
-      blend: 'dest-in',
-    }])
-    .png()
-    .toBuffer()
+  const borderLayer = await maskToRGBA(dilated, { r: br, g: bg, b: bb })
 
   // Create fill layer: fillColor where original alpha is, transparent elsewhere
   const { r: fr, g: fg, b: fb } = config.fillColor
-  const alphaPng = await sharp(alphaBuf, { raw: { width: w, height: h, channels: 1 } })
-    .png()
-    .toBuffer()
-  const fillLayer = await sharp({
-    create: { width: w, height: h, channels: 4, background: { r: fr, g: fg, b: fb, alpha: 1 } }
-  })
-    .composite([{
-      input: alphaPng,
-      blend: 'dest-in',
-    }])
-    .png()
-    .toBuffer()
+  const fillLayer = await maskToRGBA(alphaBuf, { r: fr, g: fg, b: fb })
 
   // Combine: border layer on bottom, fill layer on top
   const combined = await sharp(borderLayer)
