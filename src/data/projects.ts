@@ -1,4 +1,5 @@
 import type { ImageMetadata } from 'astro'
+import type { Recipe } from '../components/CameraRecipe.astro'
 
 export interface Project {
   slug: string
@@ -8,6 +9,7 @@ export interface Project {
   description: string
   longDescription: string
   gallery: ImageMetadata[]
+  recipe?: Recipe
 }
 
 // Helper to load all images from assets
@@ -52,6 +54,20 @@ export const projects: Project[] = [
     description: "Angular facades and shifting planes in Vienna's university district. Architecture rendered as tone, weight, and void.",
     longDescription: "Vienna, Christmas 2024. Stone and glass folding against grey sky. Acros film simulation through a red filter, grain pushed until the surfaces hum.",
     gallery: galleryFrom('vienna-2024'),
+    recipe: {
+      camera: 'FUJIFILM X-T2',
+      simulation: 'ACROS +R',
+      settings: [
+        'Grain Strong',
+        'NR -4',
+        'Highlight +1',
+        'Shadow +3',
+        'Sharpness +2',
+        'WB Daylight',
+        'R -3',
+        'B -6',
+      ],
+    },
   },
   //  {
   //    slug: "hollow-spaces",

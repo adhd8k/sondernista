@@ -1,0 +1,27 @@
+---
+export interface Recipe {
+  camera: string
+  simulation: string
+  settings: string[]
+}
+
+interface Props {
+  recipe?: Recipe
+}
+
+const { recipe } = Astro.props
+---
+
+{recipe && (
+  <div class="mt-20 pt-10 border-t border-border">
+    <p class="text-xs uppercase tracking-[0.25em] text-secondary mb-4">Recipe</p>
+    <p class="font-mono text-sm text-muted-foreground leading-relaxed">
+      <span class="text-secondary">{recipe.camera}</span>
+      <span class="mx-2 text-border">—</span>
+      <span class="text-secondary">{recipe.simulation}</span>
+    </p>
+    <p class="font-mono text-xs text-muted-foreground/60 mt-2 tracking-wide">
+      {recipe.settings.join(' · ')}
+    </p>
+  </div>
+)}

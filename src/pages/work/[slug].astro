@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import Layout from '../../layouts/Layout.astro'
+import CameraRecipe from '../../components/CameraRecipe.astro'
 import { projects, getProjectBySlug } from '../../data/projects'
 import type { GetStaticPaths } from 'astro'
 
@@ -52,6 +53,9 @@ const { project } = Astro.props
             </div>
           ))}
         </div>
+
+        <!-- Camera Recipe -->
+        <CameraRecipe recipe={project.recipe} />
 
         <!-- Navigation -->
         <div class="mt-28 pt-10 border-t border-border flex justify-between">
