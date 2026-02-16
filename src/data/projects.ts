@@ -48,7 +48,7 @@ function galleryFrom(dir: string): ImageMetadata[] {
 
 export const projects: Project[] = [
   {
-    slug: "2022-klakstein",
+    slug: "klakstein",
     image: img('2022-klakstein/05.jpg'),
     title: "KLAKSTEIN",
     year: "2022",
@@ -69,6 +69,21 @@ export const projects: Project[] = [
         'R -3',
         'B -6',
       ],
+    },
+  },
+  {
+    slug: "early-street",
+    image: img('2014-2016-street/01.jpg'),
+    title: "EARLY STREET",
+    year: "2014-16",
+    description: "Toronto streets. Learning to see in public. Shooting from the hip, finding rhythm with strangers.",
+    longDescription: "Before the practice had a name, there was just the impulse to look. These images trace the first years of carrying a camera through Toronto. Shooting loose, often from the hip, chasing light and gesture without fully understanding why.",
+    gallery: galleryFrom('2014-2016-street'),
+    tags: ['street', 'monochrome', 'digital'],
+    recipe: {
+      camera: 'FUJIFILM X-T1',
+      simulation: 'MONOCHROME',
+      settings: []
     },
   },
   //  {
