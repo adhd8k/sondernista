@@ -10,7 +10,8 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 DIST_DIR="${PROJECT_ROOT}/dist"
 
 # Get bucket name from arg, tfvars, or default
-BUCKET="${1:-$(cd "$SCRIPT_DIR" && terraform output -raw bucket_name 2>/dev/null || echo "sondernista-site")}"
+TF_DIR="${PROJECT_ROOT}/terraform"
+BUCKET="${1:-$(cd "$TF_DIR" && terraform output -raw bucket_name 2>/dev/null || echo "sondernista.com")}"
 
 if [ ! -d "$DIST_DIR" ]; then
   echo "❌ No dist/ directory. Run 'npm run build' first."
