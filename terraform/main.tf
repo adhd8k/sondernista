@@ -24,7 +24,7 @@ provider "google" {
 # Served via Cloudflare for HTTPS, CDN, and DNS.
 
 resource "google_storage_bucket" "site" {
-  name          = local.bucket_name
+  name          = var.domain
   location      = var.region
   force_destroy = false
 

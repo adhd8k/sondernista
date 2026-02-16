@@ -10,17 +10,7 @@ variable "region" {
 }
 
 variable "domain" {
-  description = "Primary domain for the site (e.g. sondernista.com)"
+  description = "Primary domain for the site — also used as the GCS bucket name (required for GCS website hosting)"
   type        = string
   default     = "sondernista.com"
-}
-
-variable "bucket_name" {
-  description = "GCS bucket name (must be globally unique, typically the domain)"
-  type        = string
-  default     = ""
-}
-
-locals {
-  bucket_name = var.bucket_name != "" ? var.bucket_name : replace(var.domain, ".", "-")
 }
