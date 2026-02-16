@@ -36,6 +36,7 @@ const { project } = Astro.props
           <p class="mt-10 max-w-3xl text-lg text-muted-foreground leading-relaxed">
             {project.longDescription}
           </p>
+          <CameraRecipe recipe={project.recipe} />
         </div>
 
         <!-- Gallery -->
@@ -53,9 +54,6 @@ const { project } = Astro.props
             </div>
           ))}
         </div>
-
-        <!-- Camera Recipe -->
-        <CameraRecipe recipe={project.recipe} />
 
         <!-- Navigation -->
         <div class="mt-28 pt-10 border-t border-border flex justify-between">
