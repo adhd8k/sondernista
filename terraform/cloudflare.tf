@@ -34,30 +34,6 @@ resource "cloudflare_dns_record" "www" {
   ttl     = 1
 }
 
-# ─── www → apex Redirect Rule ────────────────────────────────
-
-resource "cloudflare_ruleset" "www_redirect" {
-  zone_id = data.cloudflare_zone.site.zone_id
-  name    = "www to apex redirect"
-  kind    = "zone"
-  phase   = "http_request_dynamic_redirect"
-
-  rules = [
-    {
-      action      = "redirect"
-      expression  = "(http.host eq \"www.${var.domain}\")"
-      description = "Redirect www to apex"
-      action_parameters = {
-        from_value = {
-          status_code = 301
-          target_url = {
-            expression = "concat(\"https://${var.domain}\", http.request.uri.path)"
-          }
-        }
-      }
-    }
-  ]
-}
 
 # ─── Cloudflare Access (Protected Galleries) ─────────────────
 # One Access application + inline policy per protected path.
