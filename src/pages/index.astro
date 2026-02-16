@@ -1,24 +1,26 @@
 ---
 import { Image } from 'astro:assets'
 import Layout from '../layouts/Layout.astro'
-import hero from '../assets/images/hero/DSCF2917.jpg'
+import { projects } from '../data/projects'
+
+const featured = projects[0]
 ---
 
 <Layout>
   <div class="h-screen w-full pt-[100px]">
-    <div class="relative h-full w-full bg-background/90">
+    <a href={`/work/${featured.slug}`} class="relative block h-full w-full bg-background/90 group">
       <Image
-          src={hero}
-          widths={[800, 1200]}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          alt="Lines- Vienna, 2024"
+          src={featured.image}
+          widths={[800, 1200, 1800]}
+          sizes="100vw"
+          alt={featured.title}
           class="absolute inset-0 w-full h-full object-cover"
       />
       <div class="absolute bottom-12 left-12 bg-background/90 px-6 py-4">
         <p class="text-primary text-lg uppercase tracking-[0.2em] font-semibold">
-          Lines- Vienna, 2024
+          {featured.title}, {featured.year}
         </p>
       </div>
-    </div>
+    </a>
   </div>
 </Layout>
