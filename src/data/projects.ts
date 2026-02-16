@@ -128,3 +128,44 @@ export const projects: Project[] = [
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug)
 }
+
+// ── Assignments ──────────────────────────────────────────────
+
+export interface Assignment {
+  client: string
+  subtitle: string
+  image: ImageMetadata
+  type: string
+  status: 'on assignment' | 'coming soon'
+}
+
+export const assignments: Assignment[] = [
+  {
+    client: 'OSC',
+    subtitle: 'Ontario Suspension Collective',
+    image: img('assignments/assignment-osc.jpg'),
+    type: 'Documentation',
+    status: 'on assignment',
+  },
+  {
+    client: 'BME',
+    subtitle: 'Body Modification Ezine',
+    image: img('assignments/assignment-bme.jpg'),
+    type: 'Editorial',
+    status: 'on assignment',
+  },
+  {
+    client: 'PATINA',
+    subtitle: 'Texture & Time',
+    image: img('assignments/assignment-patina.jpg'),
+    type: 'Aesthetic',
+    status: 'coming soon',
+  },
+  {
+    client: 'IR',
+    subtitle: 'Infrared Studies',
+    image: img('assignments/assignment-ir.jpg'),
+    type: 'Exploration',
+    status: 'coming soon',
+  },
+]

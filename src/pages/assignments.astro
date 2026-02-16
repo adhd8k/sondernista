@@ -1,36 +1,7 @@
 ---
+import { Image } from 'astro:assets'
 import Layout from '../layouts/Layout.astro'
-
-const assignments = [
-  {
-    client: "OSC",
-    subtitle: "Ontario Suspension Collective",
-    image: "/images/assignment-osc.jpg",
-    type: "Documentation",
-    status: "on assignment"
-  },
-  {
-    client: "BME",
-    subtitle: "Body Modification Ezine",
-    image: "/images/assignment-bme.jpg",
-    type: "Editorial",
-    status: "on assignment"
-  },
-  {
-    client: "PATINA",
-    subtitle: "Texture & Time",
-    image: "/images/assignment-patina.jpg",
-    type: "Aesthetic",
-    status: "coming soon"
-  },
-  {
-    client: "IR",
-    subtitle: "Infrared Studies",
-    image: "/images/assignment-ir.jpg",
-    type: "Exploration",
-    status: "coming soon"
-  },
-]
+import { assignments } from '../data/projects'
 ---
 
 <Layout title="Assignments — SONDERNISTA">
@@ -49,9 +20,11 @@ const assignments = [
           {assignments.map((assignment) => (
             <div class="group relative border border-border overflow-hidden">
               <div class="aspect-[4/3]">
-                <img 
+                <Image 
                   src={assignment.image} 
                   alt={assignment.client}
+                  widths={[600, 900, 1200]}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 700px"
                   class="w-full h-full object-cover brightness-50"
                   loading="lazy"
                 />
