@@ -5,6 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  image: {
+    format: ['avif', 'webp'],
+  },
   vite: {
     plugins: [tailwindcss()]
   }

@@ -1,18 +1,22 @@
 ---
+import { Image } from 'astro:assets'
 import Layout from '../layouts/Layout.astro'
+import hero from '../assets/hero/DSCF2917.jpg'
 ---
 
 <Layout>
   <div class="h-screen w-full pt-[100px]">
     <div class="relative h-full w-full bg-background/90">
-      <img
-        src="/images/hero.jpg"
-        alt="Misty mountain range at dawn"
-        class="absolute inset-0 w-full h-full object-cover"
+      <Image
+          src={hero}
+          widths={[800, 1200]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          alt="Lines- Vienna, 2024"
+          class="absolute inset-0 w-full h-full object-cover"
       />
       <div class="absolute bottom-12 left-12 bg-background/90 px-6 py-4">
         <p class="text-primary text-lg uppercase tracking-[0.2em] font-semibold">
-          Dawn Over The Range, 2025
+          Lines- Vienna, 2024
         </p>
       </div>
     </div>

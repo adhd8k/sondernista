@@ -10,6 +10,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "lines-vienna",
+    image: "/images/project-1.jpg",
+    title: "Lines (Vienna)",
+    year: "2024",
+    description: "An exploration of abandoned industrial architecture and the poetry found in decay. Light transforms emptiness into something sacred.",
+    longDescription: "This ongoing series documents the quiet beauty of abandoned industrial spaces across the American Midwest. Each location tells a story of human ambition, labor, and eventual departure. Through careful observation of light and shadow, these photographs seek to honor the dignity of forgotten places.",
+    gallery: [
+      "/images/project-1.jpg",
+      "/images/project-1-2.jpg",
+      "/images/project-1-3.jpg",
+    ],
+  },
+  {
     slug: "hollow-spaces",
     image: "/images/project-1.jpg",
     title: "Hollow Spaces",

@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Build output
 dist/
+
+.next
+src/assets
