@@ -1,0 +1,36 @@
+---
+import '../styles/global.css'
+import Footer from '../components/Footer.astro'
+
+const currentYear = new Date().getFullYear()
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>404 — SONDERNISTA</title>
+  </head>
+  <body class="antialiased flex flex-col min-h-screen">
+    <main class="flex-1 flex flex-col items-center justify-center px-8">
+      <p class="text-[8rem] md:text-[12rem] font-bold leading-none tracking-tight text-primary">
+        404
+      </p>
+      <p class="mt-4 text-lg uppercase tracking-[0.2em] text-secondary">
+        Nothing to see here
+      </p>
+      <a
+        href="/"
+        class="mt-10 text-base uppercase tracking-[0.15em] text-secondary hover:text-primary transition-colors border-b border-secondary hover:border-primary pb-1"
+      >
+        Back to work
+      </a>
+    </main>
+    <Footer />
+  </body>
+</html>
