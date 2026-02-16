@@ -10,6 +10,7 @@ export interface Project {
   longDescription: string
   gallery: ImageMetadata[]
   recipe?: Recipe
+  tags?: string[]
 }
 
 // Helper to load all images from assets
@@ -54,6 +55,7 @@ export const projects: Project[] = [
     description: "Angular facades and shifting planes in Vienna's university district. Architecture rendered as tone, weight, and void.",
     longDescription: "Vienna, Christmas 2022. Stone and glass folding against grey sky. Acros film simulation through a red filter, grain pushed until the surfaces hum.",
     gallery: galleryFrom('2022-klakstein'),
+    tags: ['architecture', 'monochrome', 'digital'],
     recipe: {
       camera: 'FUJIFILM X-T2',
       simulation: 'ACROS +R',

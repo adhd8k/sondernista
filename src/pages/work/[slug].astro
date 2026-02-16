@@ -33,6 +33,15 @@ const { project } = Astro.props
           <p class="mt-4 text-lg uppercase tracking-[0.15em] text-secondary">
             {project.year}
           </p>
+          {project.tags && project.tags.length > 0 && (
+            <div class="mt-8 flex flex-wrap gap-3">
+              {project.tags.map((tag) => (
+                <span class="px-3 py-1 text-xs uppercase tracking-[0.15em] border border-border text-secondary">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
           <p class="mt-10 max-w-3xl text-lg text-muted-foreground leading-relaxed">
             {project.longDescription}
           </p>
