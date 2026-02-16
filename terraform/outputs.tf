@@ -13,7 +13,12 @@ output "site_url" {
   value       = "https://${var.domain}"
 }
 
-output "cloudflare_dns_target" {
-  description = "Set Cloudflare CNAME record to this value"
-  value       = "c.storage.googleapis.com"
+output "nameservers" {
+  description = "Cloudflare nameservers for this zone"
+  value       = data.cloudflare_zone.site.name_servers
+}
+
+output "protected_paths" {
+  description = "Paths protected by Cloudflare Access"
+  value       = var.protected_paths
 }
