@@ -113,7 +113,7 @@ export const assignments: Assignment[] = [
   {
     client: 'OSC',
     subtitle: 'Ontario Suspension Collective',
-    image: img('assignments/assignment-patina.jpg'),
+    image: img('assignments/assignment-ir.jpg'),
     type: 'Documentation',
     status: 'on assignment',
   },
