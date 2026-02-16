@@ -57,6 +57,9 @@ dev: ## Start dev server
 preview: build ## Build + serve locally
 	npm run preview
 
+clean: ## Clean dist/ directory
+	rm -rf $(DIST_DIR)/*
+
 # ─── Deploy ──────────────────────────────────────────────────
 
 .PHONY: push deploy invalidate
