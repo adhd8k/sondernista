@@ -158,17 +158,17 @@ export interface Assignment {
 
 export const assignments: Assignment[] = [
   {
-    client: 'OSC',
-    subtitle: 'Ontario Suspension Collective',
-    image: img('assignments/assignment-osc.jpg'),
-    type: 'Documentation',
-    status: 'on assignment',
-  },
-  {
     client: 'BME',
     subtitle: 'Body Modification Ezine',
     image: img('assignments/assignment-bme.jpg'),
     type: 'Editorial',
+    status: 'on assignment',
+  },
+  {
+    client: 'OSC',
+    subtitle: 'Ontario Suspension Collective',
+    image: img('assignments/assignment-osc.jpg'),
+    type: 'Documentation',
     status: 'on assignment',
   },
   {
