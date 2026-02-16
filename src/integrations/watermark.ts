@@ -90,19 +90,30 @@ async function prepareWatermark(
   const w = resizedMeta.width!
   const h = resizedMeta.height!
 
+  // Helper: ensure a greyscale buffer is exactly w*h bytes via PNG round-trip
+  async function greyBuf(input: Buffer, isRaw = true): Promise<Buffer> {
+    const s = isRaw
+      ? sharp(input, { raw: { width: w, height: h, channels: 1 } })
+      : sharp(input)
+    return s.greyscale().raw().toBuffer()
+  }
+
   // Extract the alpha channel as a mask of where strokes are
   let alphaBuf = await sharp(resizedBuf)
     .extractChannel(3)
+    .raw()
     .toBuffer()
 
   // Thicken the strokes themselves (2 dilation passes on the fill)
   for (let i = 0; i < 2; i++) {
     alphaBuf = await sharp(alphaBuf, { raw: { width: w, height: h, channels: 1 } })
       .median(3)
+      .raw()
       .toBuffer()
   }
   alphaBuf = await sharp(alphaBuf, { raw: { width: w, height: h, channels: 1 } })
     .threshold(20)
+    .raw()
     .toBuffer()
 
   // Create a dilated (expanded) version for the border/outline
@@ -111,22 +122,26 @@ async function prepareWatermark(
   for (let i = 0; i < border; i++) {
     dilated = await sharp(dilated, { raw: { width: w, height: h, channels: 1 } })
       .median(3)
+      .raw()
       .toBuffer()
   }
 
   // Threshold the dilated mask to make it crisp
   dilated = await sharp(dilated, { raw: { width: w, height: h, channels: 1 } })
     .threshold(20)
+    .raw()
     .toBuffer()
 
   // Create border layer: borderColor where dilated mask is, transparent elsewhere
   const { r: br, g: bg, b: bb } = config.borderColor
+  const dilatedPng = await sharp(dilated, { raw: { width: w, height: h, channels: 1 } })
+    .png()
+    .toBuffer()
   const borderLayer = await sharp({
     create: { width: w, height: h, channels: 4, background: { r: br, g: bg, b: bb, alpha: 1 } }
   })
     .composite([{
-      input: dilated,
-      raw: { width: w, height: h, channels: 1 },
+      input: dilatedPng,
       blend: 'dest-in',
     }])
     .png()
@@ -134,12 +149,14 @@ async function prepareWatermark(
 
   // Create fill layer: fillColor where original alpha is, transparent elsewhere
   const { r: fr, g: fg, b: fb } = config.fillColor
+  const alphaPng = await sharp(alphaBuf, { raw: { width: w, height: h, channels: 1 } })
+    .png()
+    .toBuffer()
   const fillLayer = await sharp({
     create: { width: w, height: h, channels: 4, background: { r: fr, g: fg, b: fb, alpha: 1 } }
   })
     .composite([{
-      input: alphaBuf,
-      raw: { width: w, height: h, channels: 1 },
+      input: alphaPng,
       blend: 'dest-in',
     }])
     .png()
