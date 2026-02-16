@@ -47,7 +47,7 @@ const { project } = Astro.props
                 alt={`${project.title} — ${index + 1}`}
                 widths={[800, 1200]}
                 sizes="(max-width: 640px) 100vw, (max-width: 1400px) 90vw, 1400px"
-                class="w-full"
+                class="w-full max-h-[90vh] object-contain"
                 loading={index === 0 ? 'eager' : 'lazy'}
               />
             </div>
