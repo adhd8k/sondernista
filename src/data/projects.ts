@@ -49,12 +49,12 @@ function galleryFrom(dir: string): ImageMetadata[] {
 export const projects: Project[] = [
   {
     slug: "klakstein",
-    image: img('2022-klakstein/05.jpg'),
+    image: img('work/2022-klakstein/05.jpg'),
     title: "KLAKSTEIN",
     year: "2022",
     description: "Angular facades and shifting planes in Vienna's university district. Architecture rendered as tone, weight, and void.",
     longDescription: "Vienna, Christmas 2022. Stone and glass folding against grey sky. Acros film simulation through a red filter, grain pushed until the surfaces hum.",
-    gallery: galleryFrom('2022-klakstein'),
+    gallery: galleryFrom('work/2022-klakstein'),
     tags: ['architecture', 'monochrome', 'digital'],
     recipe: {
       camera: 'FUJIFILM X-T2',
@@ -73,12 +73,12 @@ export const projects: Project[] = [
   },
   {
     slug: "early-street",
-    image: img('2014-2016-street/01.jpg'),
+    image: img('work/2014-2016-street/01.jpg'),
     title: "EARLY STREET",
     year: "2014-16",
     description: "Toronto streets. Learning to see in public. Shooting from the hip, finding rhythm with strangers.",
     longDescription: "Before the practice had a name, there was just the impulse to look. These images trace the first years of carrying a camera through Toronto. Shooting loose, often from the hip, chasing light and gesture without fully understanding why.",
-    gallery: galleryFrom('2014-2016-street'),
+    gallery: galleryFrom('work/2014-2016-street'),
     tags: ['street', 'monochrome', 'digital'],
     recipe: {
       camera: 'FUJIFILM X-T1',
@@ -86,60 +86,6 @@ export const projects: Project[] = [
       settings: []
     },
   },
-  //  {
-  //    slug: "hollow-spaces",
-  //    image: img('hollow-spaces/cover.jpg'),
-  //    title: "Hollow Spaces",
-  //    year: "2025",
-  //    description: "An exploration of abandoned industrial architecture and the poetry found in decay. Light transforms emptiness into something sacred.",
-  //    longDescription: "This ongoing series documents the quiet beauty of abandoned industrial spaces across the American Midwest. Each location tells a story of human ambition, labor, and eventual departure. Through careful observation of light and shadow, these photographs seek to honor the dignity of forgotten places.",
-  //    gallery: galleryFrom('hollow-spaces'),
-  //  },
-  //  {
-  //    slug: "solitude",
-  //    image: img('solitude/cover.jpg'),
-  //    title: "Solitude",
-  //    year: "2024",
-  //    description: "Landscapes that speak to isolation and quiet contemplation. Finding beauty in the space between presence and absence.",
-  //    longDescription: "Solitude is a meditation on the emotional landscape of isolation. Shot over the course of a year in remote locations, these images explore the profound stillness found in nature when human presence recedes. The work invites viewers to sit with silence.",
-  //    gallery: galleryFrom('solitude'),
-  //  },
-  //  {
-  //    slug: "concrete-dreams",
-  //    image: img('concrete-dreams/cover.jpg'),
-  //    title: "Concrete Dreams",
-  //    year: "2024",
-  //    description: "Brutalist architecture through the lens of shadow and form. Geometric meditations on urban structures.",
-  //    longDescription: "Concrete Dreams examines the bold geometries of brutalist architecture. These monolithic structures, often maligned, reveal an unexpected poetry when observed through the interplay of light and shadow. The series celebrates the uncompromising vision of mid-century architects.",
-  //    gallery: galleryFrom('concrete-dreams'),
-  //  },
-  //  {
-  //    slug: "tidal",
-  //    image: img('tidal/cover.jpg'),
-  //    title: "Tidal",
-  //    year: "2023",
-  //    description: "Long exposure seascapes capturing the eternal conversation between water and stone. Time made visible.",
-  //    longDescription: "Tidal captures the endless dialogue between ocean and shore. Using extended exposures, the turbulent motion of water transforms into silk, revealing the patience of stone. These images speak to permanence and change, the eternal rhythm of the natural world.",
-  //    gallery: galleryFrom('tidal'),
-  //  },
-  //  {
-  //    slug: "obscured",
-  //    image: img('obscured/cover.jpg'),
-  //    title: "Obscured",
-  //    year: "2023",
-  //    description: "Figure studies through frosted glass and translucent barriers. The human form abstracted and reimagined.",
-  //    longDescription: "Obscured explores the tension between visibility and concealment. Through frosted glass and translucent barriers, the human form becomes abstracted, inviting viewers to project their own narratives onto ambiguous shapes. The work questions how we see and are seen.",
-  //    gallery: galleryFrom('obscured'),
-  //  },
-  //  {
-  //    slug: "objects-in-repose",
-  //    image: img('objects-in-repose/cover.jpg'),
-  //    title: "Objects in Repose",
-  //    year: "2022",
-  //    description: "Still life compositions exploring the dramatic interplay of light and shadow on everyday forms.",
-  //    longDescription: "Objects in Repose returns to the classical tradition of still life, finding drama in the ordinary. Simple objects—vessels, spheres, geometric forms—become stages for the theater of light. The series is an exercise in seeing the extraordinary within the mundane.",
-  //    gallery: galleryFrom('objects-in-repose'),
-  //  },
 ]
 
 export function getProjectBySlug(slug: string): Project | undefined {
@@ -160,14 +106,14 @@ export const assignments: Assignment[] = [
   {
     client: 'BME',
     subtitle: 'Body Modification Ezine',
-    image: img('assignments/assignment-bme.jpg'),
+    image: img('assignments/assignment-ir.jpg'),
     type: 'Editorial',
     status: 'on assignment',
   },
   {
     client: 'OSC',
     subtitle: 'Ontario Suspension Collective',
-    image: img('assignments/assignment-osc.jpg'),
+    image: img('assignments/assignment-patina.jpg'),
     type: 'Documentation',
     status: 'on assignment',
   },
