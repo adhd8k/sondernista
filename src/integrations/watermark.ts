@@ -29,16 +29,25 @@ interface WatermarkConfig {
   minWidth: number
   /** File extensions to process */
   extensions: string[]
+  /** Stroke border width in pixels (scaled with watermark). Creates contrast outline. */
+  borderWidth: number
+  /** Border color */
+  borderColor: { r: number; g: number; b: number }
+  /** Fill color for the signature strokes */
+  fillColor: { r: number; g: number; b: number }
 }
 
 const DEFAULT_CONFIG: WatermarkConfig = {
   watermarkPath: 'src/assets/images/signature.png',
-  scale: 0.08,
-  opacity: 0.15,
+  scale: 0.10,
+  opacity: 0.4,
   padding: 20,
   position: 'bottom-right',
   minWidth: 400,
   extensions: ['.jpg', '.jpeg', '.png', '.webp', '.avif'],
+  borderWidth: 3,
+  borderColor: { r: 0, g: 0, b: 0 },
+  fillColor: { r: 255, g: 255, b: 255 },
 }
 
 async function findImages(dir: string, extensions: string[]): Promise<string[]> {
@@ -65,20 +74,78 @@ async function findImages(dir: string, extensions: string[]): Promise<string[]> 
 async function prepareWatermark(
   watermarkBuffer: Buffer,
   targetWidth: number,
-  scale: number,
-  opacity: number
+  config: WatermarkConfig
 ): Promise<{ buffer: Buffer; width: number; height: number }> {
-  const wmWidth = Math.round(targetWidth * scale)
+  const wmWidth = Math.round(targetWidth * config.scale)
+  const border = config.borderWidth
 
-  // Resize watermark
-  const resized = sharp(watermarkBuffer).resize(wmWidth)
-  const meta = await resized.metadata()
+  // Resize the source signature (black on transparent)
+  const resizedBuf = await sharp(watermarkBuffer)
+    .resize(wmWidth)
+    .ensureAlpha()
+    .png()
+    .toBuffer()
 
-  // Apply opacity by compositing with a semi-transparent layer
-  const buffer = await resized
+  const resizedMeta = await sharp(resizedBuf).metadata()
+  const w = resizedMeta.width!
+  const h = resizedMeta.height!
+
+  // Extract the alpha channel as a mask of where strokes are
+  const alphaBuf = await sharp(resizedBuf)
+    .extractChannel(3)
+    .toBuffer()
+
+  // Create a dilated (expanded) version for the border/outline
+  // We do multiple passes of median filter to thicken the mask
+  let dilated = alphaBuf
+  for (let i = 0; i < border; i++) {
+    dilated = await sharp(dilated, { raw: { width: w, height: h, channels: 1 } })
+      .median(3)
+      .toBuffer()
+  }
+
+  // Threshold the dilated mask to make it crisp
+  dilated = await sharp(dilated, { raw: { width: w, height: h, channels: 1 } })
+    .threshold(20)
+    .toBuffer()
+
+  // Create border layer: borderColor where dilated mask is, transparent elsewhere
+  const { r: br, g: bg, b: bb } = config.borderColor
+  const borderLayer = await sharp({
+    create: { width: w, height: h, channels: 4, background: { r: br, g: bg, b: bb, alpha: 1 } }
+  })
+    .composite([{
+      input: dilated,
+      raw: { width: w, height: h, channels: 1 },
+      blend: 'dest-in',
+    }])
+    .png()
+    .toBuffer()
+
+  // Create fill layer: fillColor where original alpha is, transparent elsewhere
+  const { r: fr, g: fg, b: fb } = config.fillColor
+  const fillLayer = await sharp({
+    create: { width: w, height: h, channels: 4, background: { r: fr, g: fg, b: fb, alpha: 1 } }
+  })
+    .composite([{
+      input: alphaBuf,
+      raw: { width: w, height: h, channels: 1 },
+      blend: 'dest-in',
+    }])
+    .png()
+    .toBuffer()
+
+  // Combine: border layer on bottom, fill layer on top
+  const combined = await sharp(borderLayer)
+    .composite([{ input: fillLayer }])
+    .png()
+    .toBuffer()
+
+  // Apply overall opacity
+  const buffer = await sharp(combined)
     .ensureAlpha()
     .composite([{
-      input: Buffer.from([255, 255, 255, Math.round(255 * opacity)]),
+      input: Buffer.from([255, 255, 255, Math.round(255 * config.opacity)]),
       raw: { width: 1, height: 1, channels: 4 },
       tile: true,
       blend: 'dest-in',
@@ -86,11 +153,7 @@ async function prepareWatermark(
     .png()
     .toBuffer()
 
-  return {
-    buffer,
-    width: wmWidth,
-    height: meta.height || wmWidth,
-  }
+  return { buffer, width: w, height: h }
 }
 
 export default function watermarkIntegration(userConfig?: Partial<WatermarkConfig>): AstroIntegration {
@@ -142,8 +205,7 @@ export default function watermarkIntegration(userConfig?: Partial<WatermarkConfi
             const wm = await prepareWatermark(
               watermarkBuffer,
               metadata.width,
-              config.scale,
-              config.opacity
+              config
             )
 
             // Calculate position

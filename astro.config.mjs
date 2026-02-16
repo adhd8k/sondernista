@@ -10,11 +10,14 @@ export default defineConfig({
   },
   integrations: [
     watermark({
-      scale: 0.08,        // 8% of image width
-      opacity: 0.15,       // 15% opacity
+      scale: 0.10,         // 10% of image width
+      opacity: 0.4,        // 40% opacity — white on black outline pops
       padding: 20,         // 20px from edge
       position: 'bottom-right',
       minWidth: 400,       // skip thumbnails
+      borderWidth: 3,      // black outline thickness (px, per dilation pass)
+      fillColor: { r: 255, g: 255, b: 255 },   // white signature
+      borderColor: { r: 0, g: 0, b: 0 },       // black outline
     }),
   ],
   vite: {
