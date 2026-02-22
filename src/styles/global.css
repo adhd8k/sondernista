@@ -38,13 +38,8 @@ body {
   font-weight: 400;
 }
 
-/* Utility classes */
-.text-primary { color: var(--primary); }
-.text-secondary { color: var(--secondary); }
-.text-muted { color: var(--muted-foreground); }
-.bg-background { background-color: var(--background); }
-.bg-muted { background-color: var(--muted); }
-.border-border { border-color: var(--border); }
+/* Utility overrides removed — Tailwind 4 @theme generates these automatically
+   from --color-* variables. Manual classes were conflicting with hover variants. */
 
 /* Typography scale - GO BIG */
 h1 { font-size: 3rem; font-weight: 600; }
