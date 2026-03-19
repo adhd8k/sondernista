@@ -35,10 +35,22 @@ import { assignments } from '../data/projects'
                 </p>
                 <div class="bg-background/90 px-6 py-4">
                   <h2 class="text-xl sm:text-2xl md:text-3xl uppercase tracking-[0.15em] font-semibold text-primary">
-                    {assignment.client}
+                    {assignment.link ? (
+                      <a href={assignment.link} target="_blank" rel="noopener noreferrer" class="hover:text-primary/70 transition-colors">
+                        {assignment.client}
+                      </a>
+                    ) : (
+                      assignment.client
+                    )}
                   </h2>
                   <p class="mt-2 text-base text-primary/90">
-                    {assignment.subtitle}
+                    {assignment.link ? (
+                      <a href={assignment.link} target="_blank" rel="noopener noreferrer" class="hover:text-primary/60 transition-colors">
+                        {assignment.subtitle}
+                      </a>
+                    ) : (
+                      assignment.subtitle
+                    )}
                   </p>
                 </div>
                 <p class="mt-6 text-base uppercase tracking-[0.15em] text-white/80">

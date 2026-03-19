@@ -100,6 +100,7 @@ export interface Assignment {
   image: ImageMetadata
   type: string
   status: 'on assignment' | 'coming soon'
+  link?: string
 }
 
 export const assignments: Assignment[] = [
@@ -109,6 +110,7 @@ export const assignments: Assignment[] = [
     image: img('assignments/assignment-ir.jpg'),
     type: 'Editorial',
     status: 'on assignment',
+    link: 'https://www.bme.com/',
   },
   {
     client: 'OSC',
@@ -116,13 +118,15 @@ export const assignments: Assignment[] = [
     image: img('assignments/assignment-ir.jpg'),
     type: 'Documentation',
     status: 'on assignment',
+    link: 'https://www.onhooks.com/'
   },
   {
-    client: 'PATINA',
-    subtitle: 'Texture & Time',
-    image: img('assignments/assignment-patina.jpg'),
-    type: 'Aesthetic',
-    status: 'coming soon',
+    client: 'DSC',
+    subtitle: 'Denver Suspension Collective',
+    image: img('assignments/assignment-ir.jpg'),
+    type: 'Documentation',
+    status: 'on assignment',
+    link: 'https://www.denversuspension.com/'
   },
   {
     client: 'IR',
@@ -130,5 +134,6 @@ export const assignments: Assignment[] = [
     image: img('assignments/assignment-ir.jpg'),
     type: 'Exploration',
     status: 'coming soon',
+    link: ''
   },
 ]
