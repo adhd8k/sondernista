@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SONDERNISTA Business Card Preview</title>
+<style>
+  body {
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 40px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    flex-wrap: wrap;
+    padding: 40px;
+  }
+  .card-container {
+    text-align: center;
+  }
+  .card-container h2 {
+    color: #aaa;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .card {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .card img, .card object {
+    display: block;
+    width: 192px; /* ~51mm at 96dpi scaled */
+    height: 336px; /* ~89mm at 96dpi scaled */
+  }
+</style>
+</head>
+<body>
+  <div class="card-container">
+    <h2>Front</h2>
+    <div class="card">
+      <img src="business-card-front.svg" alt="Business Card Front">
+    </div>
+  </div>
+  <div class="card-container">
+    <h2>Back</h2>
+    <div class="card">
+      <img src="business-card-back.svg" alt="Business Card Back">
+    </div>
+  </div>
+</body>
+</html>

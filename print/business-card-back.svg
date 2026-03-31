@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="89mm" height="51mm" viewBox="0 0 89 51">
+  <defs>
+    <style>
+      .card-bg { fill: #0a0a0a; }
+      .website {
+        font-family: 'Arial', sans-serif;
+        font-weight: 600;
+        font-size: 2.8px;
+        fill: #e5e5e5;
+        letter-spacing: 0.42px;
+      }
+      .location {
+        font-family: 'Arial', sans-serif;
+        font-weight: 400;
+        font-size: 1.8px;
+        fill: #808080;
+        letter-spacing: 0.27px;
+      }
+      .rule { stroke: #e5e5e5; stroke-width: 0.15; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="89" height="51" class="card-bg"/>
+
+  <!-- Centered content block -->
+  <text x="44.5" y="23.5" text-anchor="middle" class="website">SONDERNISTA.COM</text>
+
+  <!-- Hairline rule -->
+  <line x1="30" y1="27.5" x2="59" y2="27.5" class="rule"/>
+
+  <!-- Location -->
+  <text x="44.5" y="32" text-anchor="middle" class="location">ONTARIO, CANADA</text>
+</svg>
