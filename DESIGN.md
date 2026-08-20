@@ -38,6 +38,14 @@ website: the work is the interface, and everything around it recedes.
   describing it.
 - Plate captions are one sentence, sentence case, present tense.
 - No italics in the UI; italics belong only inside editorial prose.
+- **No emoji. Anywhere.** Not in interface copy, project text, alt text,
+  buttons, or link labels. Emoji render in colour and at their own weight, so a
+  single one breaks a monochrome page harder than any other single character —
+  and they read as chatty, which is the opposite of this voice. This extends to
+  pictographic Unicode that renders as emoji on common platforms: `↗`, `✓`, `★`,
+  `→` and friends. The one permitted exception is the plain `←` on back links,
+  which renders as text in the site typeface and carries navigational meaning no
+  word does as compactly. If a glyph needs explaining, use a word instead.
 
 ---
 
@@ -230,6 +238,7 @@ carries the secondary links, **about · contact**.
 **Don't**
 
 - Add color, gradients, rounded cards, shadows, or illustration.
+- Use emoji or pictographic Unicode. `←` on back links is the sole exception.
 - Crop images to a uniform ratio or thumbnail them on main views.
 - Write bare element selectors outside `@layer base`.
 - Introduce loud motion, carousels, autoplay, or social chrome.

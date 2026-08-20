@@ -28,6 +28,9 @@ uppercase: SONDERNISTA.
 - NEVER create `tailwind.config.js`. Edit theme tokens in `src/styles/global.css` `@theme`.
 - NEVER add color, gradients, shadows, or rounded corners. Palette is monochrome;
   `--radius: 0`. Read DESIGN.md before any visual change.
+- NEVER use emoji or pictographic Unicode (`↗`, `✓`, `★`, `→`) in site copy,
+  labels, or alt text. They render in colour and break the monochrome page. The
+  plain `←` on back links is the only permitted glyph. See DESIGN.md §1.
 - NEVER write bare element rules outside `@layer base` in `global.css`. Unlayered
   CSS outranks Tailwind's layered utilities, so a stray `h2 { font-size }` at the
   top level silently defeats every `text-*` class on the site.

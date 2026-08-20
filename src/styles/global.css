@@ -50,9 +50,9 @@
     letter-spacing: 0.15em;
   }
 
-  h1 { font-size: 2.25rem; font-weight: 600; }
-  h2 { font-size: 2rem;    font-weight: 600; }
-  h3 { font-size: 1.5rem;  font-weight: 500; }
+  h1 { font-size: 1.75rem; font-weight: 600; }
+  h2 { font-size: 1.5rem;  font-weight: 600; }
+  h3 { font-size: 1.25rem; font-weight: 500; }
 
   @media (min-width: 768px) {
     body { font-size: 22px; }
