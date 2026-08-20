@@ -8,19 +8,30 @@ const featured = projects[0]
 
 <Layout>
   <div class="h-screen w-full pt-[100px]">
-    <a href={`/work/${featured.slug}`} class="relative block h-full w-full bg-background/90 group">
-      <Image
-          src={featured.image}
-          widths={[800, 1200, 1800]}
-          sizes="100vw"
-          alt={featured.title}
-          class="absolute inset-0 w-full h-full object-cover"
-      />
-      <div class="absolute bottom-12 left-12 bg-background/90 px-6 py-4">
-        <p class="text-primary text-lg uppercase tracking-[0.2em] font-semibold">
-          {featured.title}, {featured.year}
-        </p>
+    {featured ? (
+      <a href={`/work/${featured.slug}`} class="relative block h-full w-full bg-background/90 group">
+        <Image
+            src={featured.image}
+            width={1600}
+            widths={[800, 1200, 1600]}
+            sizes="100vw"
+            alt={featured.title}
+            class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute bottom-12 left-12 bg-background/90 px-6 py-4">
+          <p class="text-primary text-lg uppercase tracking-[0.2em] font-semibold">
+            {featured.title}, {featured.year}
+          </p>
+        </div>
+      </a>
+    ) : (
+      <div class="h-full w-full flex items-end">
+        <div class="px-8 pb-12 md:px-12">
+          <p class="text-base uppercase tracking-[0.2em] text-secondary">
+            New work in preparation.
+          </p>
+        </div>
       </div>
-    </a>
+    )}
   </div>
 </Layout>

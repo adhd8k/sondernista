@@ -1,0 +1,46 @@
+---
+import type { Plate } from '../data/projects'
+
+interface Props {
+  plate: Plate
+  /** 1-based position in the gallery. */
+  index: number
+}
+
+const { plate, index } = Astro.props
+
+const number = String(index).padStart(2, '0')
+
+// Technical line, in the order a caption block is normally read.
+const technical = [plate.stock, plate.camera, plate.lens, plate.exposure]
+  .filter(Boolean)
+  .join(' · ')
+
+const hasCaptionRow = Boolean(plate.caption || plate.place)
+---
+
+<figcaption class="mt-5 border-t border-border pt-4">
+  {hasCaptionRow && (
+    <div class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+      {plate.caption && (
+        <p class="max-w-3xl text-base text-muted-foreground leading-relaxed">
+          {plate.caption}
+        </p>
+      )}
+      {plate.place && (
+        <p class="text-xs uppercase tracking-[0.25em] text-secondary">
+          {plate.place}
+        </p>
+      )}
+    </div>
+  )}
+
+  <p
+    class:list={[
+      'font-mono text-xs uppercase tracking-wide text-secondary',
+      hasCaptionRow && 'mt-3',
+    ]}
+  >
+    #{number}{technical && ` · ${technical}`}
+  </p>
+</figcaption>

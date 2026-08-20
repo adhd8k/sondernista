@@ -19,6 +19,11 @@ import { projects } from '../../data/projects'
               tags={project.tags}
             />
           ))}
+          {projects.length === 0 && (
+            <p class="text-base uppercase tracking-[0.15em] text-secondary">
+              New work in preparation.
+            </p>
+          )}
         </div>
       </div>
     </section>

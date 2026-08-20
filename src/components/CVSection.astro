@@ -1,0 +1,63 @@
+---
+import type { CVEntry } from '../data/projects'
+
+interface Props {
+  heading: string
+  entries: CVEntry[]
+}
+
+const { heading, entries } = Astro.props
+---
+
+{entries.length > 0 && (
+  <section class="mt-20 md:mt-28 first:mt-0">
+    <h2 class="text-xs font-medium tracking-[0.25em] text-secondary">
+      {heading}
+    </h2>
+
+    <ul class="mt-6 border-t border-border">
+      {entries.map((entry) => (
+        <li class="border-b border-border py-7 grid gap-y-2 md:grid-cols-[8rem_1fr_auto] md:gap-x-10 md:items-baseline">
+          <p class="text-sm uppercase tracking-[0.2em] text-secondary">
+            {entry.year}
+          </p>
+
+          <div>
+            <p class="text-xl uppercase tracking-[0.15em] font-semibold text-primary">
+              {entry.link ? (
+                <a
+                  href={entry.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:opacity-60 transition-opacity"
+                >
+                  {entry.title}
+                </a>
+              ) : (
+                entry.title
+              )}
+            </p>
+            {(entry.subtitle || entry.venue) && (
+              <p class="mt-1.5 text-base text-muted-foreground leading-relaxed">
+                {[entry.subtitle, entry.venue].filter(Boolean).join(' · ')}
+              </p>
+            )}
+          </div>
+
+          <div class="md:text-right">
+            {entry.role && (
+              <p class="text-xs uppercase tracking-[0.2em] text-secondary">
+                {entry.role}
+              </p>
+            )}
+            {entry.status && (
+              <p class="mt-1.5 text-xs uppercase tracking-[0.2em] text-secondary">
+                {entry.status}
+              </p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

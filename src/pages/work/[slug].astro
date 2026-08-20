@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets'
 import Layout from '../../layouts/Layout.astro'
 import CameraRecipe from '../../components/CameraRecipe.astro'
-import { projects, getProjectBySlug } from '../../data/projects'
+import PlateLabel from '../../components/PlateLabel.astro'
+import { projects, LONG_EDGE } from '../../data/projects'
 import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -13,6 +14,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const { project } = Astro.props
+
 ---
 
 <Layout title={`${project.title} — SONDERNISTA`}>
@@ -27,7 +29,7 @@ const { project } = Astro.props
           >
             ← Back to Work
           </a>
-          <h1 class="mt-10 text-2xl sm:text-4xl md:text-5xl uppercase tracking-[0.15em] font-semibold text-primary">
+          <h1 class="mt-10">
             {project.title}
           </h1>
           <p class="mt-4 text-lg uppercase tracking-[0.15em] text-secondary">
@@ -42,25 +44,37 @@ const { project } = Astro.props
               ))}
             </div>
           )}
-          <p class="mt-10 max-w-3xl text-lg text-muted-foreground leading-relaxed">
-            {project.longDescription}
-          </p>
+          <div class="mt-10 max-w-3xl space-y-6 text-lg text-muted-foreground leading-relaxed">
+            {project.longDescription.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+          {project.link && (
+            <a
+              href={project.link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-8 inline-block text-base uppercase tracking-[0.15em] text-secondary hover:text-primary border-b border-border hover:border-primary pb-1 transition-colors"
+            >
+              {project.link.label} ↗
+            </a>
+          )}
           <CameraRecipe recipe={project.recipe} />
         </div>
 
         <!-- Gallery -->
-        <div class="flex flex-col gap-12">
-          {project.gallery.map((image, index) => (
-            <div class="border border-border">
-              <Image 
-                src={image} 
-                alt={`${project.title} — ${index + 1}`}
-                widths={[800, 1200]}
-                sizes="(max-width: 640px) 100vw, (max-width: 1400px) 85vw, 1400px"
-                class="w-full max-h-[85vh] object-contain"
-                loading={index === 0 ? 'eager' : 'lazy'}
-              />
-            </div>
+        <div class="flex flex-col gap-20 md:gap-28">
+          {project.gallery.map((plate, index) => (
+            <figure>
+              <div class="border border-border">
+                <Image
+                  src={plate.image}
+                  alt={plate.caption ?? `${project.title} — plate ${index + 1}`}
+                  height={LONG_EDGE}
+                  class="w-full max-h-[85vh] object-contain"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+              <PlateLabel plate={plate} index={index + 1} />
+            </figure>
           ))}
         </div>
 

@@ -20,15 +20,16 @@ const { slug, image, title, year, description, tags } = Astro.props
       <Image 
         src={image} 
         alt={title}
+        width={1200}
         widths={[600, 900, 1200]}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
-        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+        class="w-full h-full object-cover"
         loading="lazy"
       />
     </div>
     <div class="mt-8 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
       <div class="flex-1">
-        <h2 class="text-xl uppercase tracking-[0.15em] font-semibold text-primary">
+        <h2>
           {title}
         </h2>
         <p class="mt-2 text-base text-secondary uppercase tracking-[0.1em]">

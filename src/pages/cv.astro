@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro'
+import CVSection from '../components/CVSection.astro'
+import { exhibitions, assignments, publications } from '../data/projects'
+---
+
+<Layout
+  title="CV — SONDERNISTA"
+  description="Exhibitions, assignments, and publications — Jonathon W. Marshall, documentary photographer."
+>
+  <div class="pt-28">
+    <section class="py-16 md:py-24">
+      <div class="max-w-[1400px] mx-auto px-8">
+        <h1 class="mb-6">
+          CV
+        </h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mb-20 md:mb-28">
+          Exhibitions, commissioned documentation, and published work.
+          For booking inquiries, please visit the contact page.
+        </p>
+
+        <CVSection heading="Exhibitions" entries={exhibitions} />
+        <CVSection heading="Assignments" entries={assignments} />
+        <CVSection heading="Publications" entries={publications} />
+      </div>
+    </section>
+  </div>
+</Layout>

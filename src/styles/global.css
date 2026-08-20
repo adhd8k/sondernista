@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-/* Dark Brutalist Theme */
+/* Dark brutalist theme — monochrome only. See DESIGN.md §2. */
 :root {
   --background: #0a0a0a;
   --foreground: #e5e5e5;
@@ -25,30 +25,39 @@
   --color-border: var(--border);
 }
 
-* {
-  border-color: var(--border);
-}
+/* Everything here is layered, so any Tailwind utility overrides it. Keep bare
+   element rules OUT of the top level — unlayered rules outrank utilities. */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: 'Zalando Sans Expanded', 'Arial', sans-serif;
-  font-size: 20px;
-  line-height: 1.5;
-  font-weight: 400;
-}
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
 
-/* Utility overrides removed — Tailwind 4 @theme generates these automatically
-   from --color-* variables. Manual classes were conflicting with hover variants. */
+  /* Headings carry the uppercase display treatment so pages don't repeat it. */
+  h1,
+  h2,
+  h3 {
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
 
-/* Typography scale - GO BIG */
-h1 { font-size: 3rem; font-weight: 600; }
-h2 { font-size: 2rem; font-weight: 600; }
-h3 { font-size: 1.5rem; font-weight: 500; }
+  h1 { font-size: 2.25rem; font-weight: 600; }
+  h2 { font-size: 2rem;    font-weight: 600; }
+  h3 { font-size: 1.5rem;  font-weight: 500; }
 
-@media (min-width: 768px) {
-  body { font-size: 22px; }
-  h1 { font-size: 4rem; }
-  h2 { font-size: 2.5rem; }
-  h3 { font-size: 1.75rem; }
+  @media (min-width: 768px) {
+    body { font-size: 22px; }
+    h1 { font-size: 4rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.75rem; }
+  }
 }

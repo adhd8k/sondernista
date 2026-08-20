@@ -6,16 +6,14 @@ import Footer from '../components/Footer.astro'
 interface Props {
   title?: string
   description?: string
-  image?: string
 }
 
 const { 
   title = 'SONDERNISTA',
-  description = 'A photographic practice based in Ontario, Canada. Street photography, candid portraiture, and documentation of the body modification subculture.',
-  image = '/images/hero.jpg'
+  description = 'Jonathon W. Marshall — documentary photography of the body suspension community. Push-processed black-and-white film, direct flash, high-ISO digital.',
 } = Astro.props
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sondernista.com')
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
 <!doctype html>
@@ -24,19 +22,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sonderni
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
     
-    <!-- Open Graph / Social -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
