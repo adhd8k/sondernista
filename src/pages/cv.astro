@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import CVSection from '../components/CVSection.astro'
-import { exhibitions, assignments, publications } from '../data/projects'
+import { exhibitions, assignments, communityPractice, publications } from '../data/projects'
 ---
 
 <Layout
@@ -15,12 +15,14 @@ import { exhibitions, assignments, publications } from '../data/projects'
           CV
         </h1>
         <p class="text-lg text-muted-foreground max-w-2xl mb-20 md:mb-28">
-          Exhibitions, commissioned documentation, and published work.
+          Exhibitions, commissioned documentation, community practice, and
+          published work.
           For booking inquiries, please visit the contact page.
         </p>
 
         <CVSection heading="Exhibitions" entries={exhibitions} />
-        <CVSection heading="Assignments" entries={assignments} />
+        <CVSection heading="Commissioned Documentation" entries={assignments} />
+        <CVSection heading="Documentary & Community Practice" entries={communityPractice} />
         <CVSection heading="Publications" entries={publications} />
       </div>
     </section>

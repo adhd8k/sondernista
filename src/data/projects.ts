@@ -312,6 +312,7 @@ export const exhibitions: CVEntry[] = [
   },
 ]
 
+/** Paid engagements. Rendered as "Commissioned Documentation". */
 export const assignments: CVEntry[] = [
   {
     year: '2002—PRESENT',
@@ -329,6 +330,13 @@ export const assignments: CVEntry[] = [
     status: 'Event Photographer',
     link: 'https://www.onhooks.com/',
   },
+]
+
+/**
+ * Unpaid documentary work made within the community, kept separate from paid
+ * engagements so the CV does not imply a commission where there was none.
+ */
+export const communityPractice: CVEntry[] = [
   {
     year: '2026',
     title: 'DSC',
@@ -343,6 +351,15 @@ export const assignments: CVEntry[] = [
     subtitle: 'Private indoor/outdoor suspension events',
     role: 'Documentation',
     status: 'Event Photographer',
+  },
+  {
+    year: '2026',
+    title: 'INDIGENAK',
+    subtitle: 'Indigenak Suspension Team',
+    venue: 'Outdoor location, Berlin · 11 August',
+    role: 'Documentation',
+    status: 'Event Photographer',
+    link: 'https://www.instagram.com/_indigenak_suspension_team_/',
   },
 ]
 
