@@ -348,9 +348,10 @@ export const communityPractice: CVEntry[] = [
   {
     year: '2026',
     title: "BOOTS N' HOOKS",
-    subtitle: 'Private indoor/outdoor suspension events',
+    subtitle: 'Fallow Fields - Intentional & Ritual Suspensions',
     role: 'Documentation',
     status: 'Event Photographer',
+    link: 'https://www.instagram.com/_fallowfields_',
   },
   {
     year: '2026',
