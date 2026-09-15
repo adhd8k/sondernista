@@ -59,24 +59,21 @@ export interface ArchivedProject extends ProjectText {
  * Directories under src/assets/images/ that no live entry references.
  *
  * The glob below is eager, so anything it matches is bundled and deployed even
- * if nothing renders it. These three held ~690MB of originals. Excluding them
- * keeps the files on disk and out of `dist/`.
+ * if nothing renders it. Excluding these keeps their frames in the repo (they
+ * are web-sized derivatives, see scripts/optimize-images.mjs) but out of `dist/`.
+ *
+ * The glob also only descends into SUBDIRECTORIES: loose files at the root of
+ * src/assets/images/ (self-portrait.jpg, unsorted scans) are never bundled
+ * through `img()` / `galleryFrom()`. Pages that need a root file import it
+ * directly, as about.astro does.
  */
 const EXCLUDED_IMAGE_DIRS = [
-  'work/2014-2016-street', // archived — see archivedProjects
-  'work/2017-capital', // archived — see archivedProjects
-  'work/2022-klakstein', // archived — see archivedProjects
-  'dsc-2026', // archived — an older project, not currently shown
   'assignments', // the CV is text-only, so these frames are not built
 ]
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   [
-    '../assets/images/**/*.{jpg,jpeg,png,webp,avif,tiff}',
-    '!../assets/images/work/2014-2016-street/**',
-    '!../assets/images/work/2017-capital/**',
-    '!../assets/images/work/2022-klakstein/**',
-    '!../assets/images/dsc-2026/**',
+    '../assets/images/*/**/*.{jpg,jpeg,png,webp,avif,tiff}',
     '!../assets/images/assignments/**',
   ],
   { eager: true }
@@ -156,8 +153,9 @@ function galleryFrom(
  * `width` instead.
  * Nothing visible is lost — the browser was going to scale those rows away.
  *
- * Keep originals full-resolution on disk: they are the archive, they are
- * gitignored, and they are never deployed. This is the only cap that matters.
+ * The files under src/assets/images/ are themselves already capped at 2400px
+ * by scripts/optimize-images.mjs; the full-resolution archive lives in the
+ * gitignored src/assets/original-images/ and is never deployed.
  *
  * Pass it as `<Image height={LONG_EDGE}>`: Astro derives the width from the
  * frame's own ratio. Do NOT compute the width yourself from `image.width` —
@@ -168,6 +166,64 @@ export const LONG_EDGE = 1600
 
 export const projects: Project[] = [
   {
+    slug: 'cherish-berlin-2026',
+    image: img('work/cherish-berlin-2026/DSCF1400.jpg'),
+    title: 'CHERISH / BERLIN',
+    year: '2026',
+    description:
+      'Cherish with the Indigenak Suspension Team. One suspension, outdoors, Berlin.',
+    longDescription: [
+      'Berlin, August 2026. The Indigenak Suspension Team rigs from a low branch on an outdoor site. Cherish ascends in a four-point cross-body suspension.',
+      'Five frames, digital, across two cameras.',
+    ],
+    // Technical lines below are from each original's EXIF. The fp L was on an
+    // adapted manual lens, so it records no lens or aperture; the lens line is
+    // the photographer's recollection.
+    gallery: galleryFrom('work/cherish-berlin-2026', {
+      'SDIM0438.jpg': {
+        place: 'Berlin, DE',
+        camera: 'SIGMA FP L',
+        lens: 'CARL ZEISS 85MM ZF-IR',
+        stock: 'ISO 800',
+        exposure: '1/200',
+      },
+      'SDIM0450.jpg': {
+        place: 'Berlin, DE',
+        camera: 'SIGMA FP L',
+        lens: 'CARL ZEISS 85MM ZF-IR',
+        stock: 'ISO 800',
+        exposure: '1/200',
+      },
+      'DSCF1400.jpg': {
+        place: 'Berlin, DE',
+        camera: 'FUJIFILM X-T2',
+        lens: 'XF 23MM F2 R WR',
+        stock: 'ISO 800',
+        exposure: '1/150 f/2.8',
+      },
+      'SDIM0457.jpg': {
+        place: 'Berlin, DE',
+        camera: 'SIGMA FP L',
+        lens: 'CARL ZEISS 85MM ZF-IR',
+        stock: 'ISO 800',
+        exposure: '1/200',
+      },
+      'DSCF1411.jpg': {
+        place: 'Berlin, DE',
+        camera: 'FUJIFILM X-T2',
+        lens: 'XF 23MM F2 R WR',
+        stock: 'ISO 800',
+        exposure: '1/170 f/2.8',
+      },
+    }),
+    tags: ['suspension', 'monochrome', 'digital'],
+    link: {
+      label: 'Indigenak Suspension Team',
+      href: 'https://www.instagram.com/_indigenak_suspension_team_/',
+    },
+    // No `recipe`: two bodies, so the technical detail lives on each plate.
+  },
+  {
     slug: 'bleed-like-me-2026',
     image: img('work/bleed-like-me-2026/DSCF6540.jpg'),
     title: 'BLEED LIKE ME',
@@ -177,8 +233,9 @@ export const projects: Project[] = [
       'BLEED LIKE ME gathers photography, performance, installation, and video from twelve practitioners working with the body as canvas and material. For centuries people have used the body to create and to share: to build, hold, shape, dance, adorn and revere; to shed grief, hold joy, express affection, and be in community. Curated by Lindsey Kincaid, produced by Queerly Complex. 465 Collective, San Francisco, 5—26 September 2026.',
       'These six frames were collected from the Ontario and Denver Suspension Conventions. Made on 35mm film and digital',
     ],
-    // Metadata below is read from each file's EXIF. Places and captions are not
-    // in EXIF and still need to be supplied.
+    // Metadata below was transcribed from the ORIGINALS' EXIF (the committed
+    // derivatives are stripped of metadata). Places and captions are not in
+    // EXIF and still need to be supplied.
     gallery: galleryFrom('work/bleed-like-me-2026', {
       '005022680012.jpg': {
         stock: 'ILFORD HP5+ @ EI 1600',
@@ -236,47 +293,8 @@ export const projects: Project[] = [
  * Retired work — rendered nowhere. See `ArchivedProject` above.
  */
 export const archivedProjects: ArchivedProject[] = [
-  {
-    slug: 'klakstein',
-    imageDir: 'work/2022-klakstein',
-    title: 'KLAKSTEIN',
-    year: '2022',
-    description: "Angular facades and shifting planes in Vienna's university district. Architecture rendered as tone, weight, and void.",
-    longDescription: [
-      'Vienna, Christmas 2022. Stone and glass folding against grey sky. Acros film simulation through a red filter, grain pushed until the surfaces hum.',
-    ],
-    tags: ['architecture', 'monochrome', 'digital'],
-    recipe: {
-      camera: 'FUJIFILM X-T2',
-      simulation: 'ACROS +R',
-      settings: [
-        'Grain Strong',
-        'NR -4',
-        'Highlight +1',
-        'Shadow +3',
-        'Sharpness +2',
-        'WB Daylight',
-        'R -3',
-        'B -6',
-      ],
-    },
-  },
-  {
-    slug: 'early-street',
-    imageDir: 'work/2014-2016-street',
-    title: 'EARLY STREET',
-    year: '2014-16',
-    description: 'Toronto streets. Learning to see in public. Shooting from the hip, finding rhythm with strangers.',
-    longDescription: [
-      'Before the practice had a name, there was just the impulse to look. These images trace the first years of carrying a camera through Toronto. Shooting loose, often from the hip, chasing light and gesture without fully understanding why.',
-    ],
-    tags: ['street', 'monochrome', 'digital'],
-    recipe: {
-      camera: 'FUJIFILM X-T1',
-      simulation: 'MONOCHROME',
-      settings: [],
-    },
-  },
+  // KLAKSTEIN (2022) and EARLY STREET (2014-16) were retired here and their
+  // frames have since been removed from the archive entirely.
 ]
 
 // ── Curriculum vitae ─────────────────────────────────────────
@@ -357,7 +375,7 @@ export const communityPractice: CVEntry[] = [
     year: '2026',
     title: 'INDIGENAK',
     subtitle: 'Indigenak Suspension Team',
-    venue: 'Outdoor location, Berlin · 11 August',
+    venue: 'Berlin',
     role: 'Documentation',
     status: 'Event Photographer',
     link: 'https://www.instagram.com/_indigenak_suspension_team_/',

@@ -28,8 +28,9 @@ dist/
 
 .next
 
-# Photography originals (large files, not stored on GitHub)
-src/assets/images/
+# Photography archive: full-resolution originals, never stored on GitHub.
+# Web-sized derivatives in src/assets/images/ ARE committed — they are what
+# GitHub Actions builds the site from. Regenerate them with `npm run images`.
 src/assets/original-images/
 
 # Terraform

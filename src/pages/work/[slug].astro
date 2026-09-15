@@ -64,7 +64,7 @@ const { project } = Astro.props
         <div class="flex flex-col gap-20 md:gap-28">
           {project.gallery.map((plate, index) => (
             <figure>
-              <div class="border border-border">
+              <div>
                 <Image
                   src={plate.image}
                   alt={plate.caption ?? `${project.title} — plate ${index + 1}`}

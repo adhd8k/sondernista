@@ -16,7 +16,7 @@ const { slug, image, title, year, description, tags } = Astro.props
 
 <article class="group">
   <a href={`/work/${slug}`} class="block">
-    <div class="aspect-[3/2] overflow-hidden border border-border">
+    <div class="aspect-[3/2] overflow-hidden">
       <Image 
         src={image} 
         alt={title}

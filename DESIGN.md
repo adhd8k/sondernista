@@ -64,7 +64,7 @@ and exposed to Tailwind through `@theme`.
 | `--secondary`        | Meta, labels, years, inactive nav, footer        | `#737373` |
 | `--muted`            | Reserved; currently unused                       | `#1a1a1a` |
 | `--muted-foreground` | Descriptions and prose                           | `#737373` |
-| `--border`           | Hairlines, tag chips, image frames               | `#262626` |
+| `--border`           | Hairlines, tag chips                             | `#262626` |
 | `--radius`           | Corner radius — always zero                      | `0`       |
 
 **Rules**
@@ -149,8 +149,9 @@ The photography is the entire product. Everything else is a frame.
   may crop to fill their box, and should — dead letterboxing around a portrait
   frame reads as broken, not as restraint. The hero is full-bleed `object-cover`;
   work cards are a uniform `aspect-[3/2]` crop.
-- **No filters, overlays, rounded corners, or shadows.** Gallery frames carry a
-  single `--border` hairline and nothing else.
+- **No filters, overlays, rounded corners, shadows, or frames.** Images sit
+  directly on the page with no border; the gallery hairlines belong to the
+  plate labels, not the pictures.
 - **Size frames with `height={LONG_EDGE}`**, never a hand-computed `width`.
   Frames render `object-contain` under a viewport-height cap, so height is the
   binding constraint; capping the long edge lets Astro derive each frame's width
