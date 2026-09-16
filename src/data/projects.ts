@@ -171,10 +171,10 @@ export const projects: Project[] = [
     title: 'CHERISH / BERLIN',
     year: '2026',
     description:
-      'Cherish with the Indigenak Suspension Team. One suspension, outdoors, Berlin.',
+      'Performer and practitioner Cherish suspends outdoors with the Indigenak Suspension Team in Berlin.',
     longDescription: [
       'Berlin, August 2026. The Indigenak Suspension Team rigs from a low branch on an outdoor site. Cherish ascends in a four-point cross-body suspension.',
-      'Five frames, digital, across two cameras.',
+      'Six frames, digital and 35mm film.',
     ],
     // Technical lines below are from each original's EXIF. The fp L was on an
     // adapted manual lens, so it records no lens or aperture; the lens line is
@@ -201,6 +201,11 @@ export const projects: Project[] = [
         stock: 'ISO 800',
         exposure: '1/150 f/2.8',
       },
+      'INDIGENAK_057.jpg': {
+        camera: 'NIKON FM2',
+        lens: '50MM F1.8',
+        stock: 'ILFORD HP5+ @ EI 1600',
+      },
       'SDIM0457.jpg': {
         place: 'Berlin, DE',
         camera: 'SIGMA FP L',
@@ -216,7 +221,7 @@ export const projects: Project[] = [
         exposure: '1/170 f/2.8',
       },
     }),
-    tags: ['suspension', 'monochrome', 'digital'],
+    tags: ['suspension', 'monochrome', 'film', 'digital'],
     link: {
       label: 'Indigenak Suspension Team',
       href: 'https://www.instagram.com/_indigenak_suspension_team_/',
